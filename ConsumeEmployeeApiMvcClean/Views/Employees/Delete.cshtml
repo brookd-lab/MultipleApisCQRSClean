@@ -1,0 +1,26 @@
+﻿@model EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+<div>
+    <h4>Delete Employee</h4>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="DeleteConfirmed">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-2">
+                <label>Name</label>
+                <input type="text" class="form-control" name="Name" placeholder="Name" value="@Model.Name" required>
+            </div>
+            <div class="form-group mb-5">
+                <label>Age</label>
+                <input type="text" class="form-control" name="Age" placeholder="Age" value="@Model.Age" required>
+            </div>
+            <button class="btn btn-success" type="submit">Delete Employee</button>
+            <button class="btn btn-primary" asp-action="Index">Back to List</button>
+        </form>
+    </div>
+</div>
