@@ -1,6 +1,5 @@
 ﻿using DAL.Models;
 using DAL.Repos;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeApi.Services

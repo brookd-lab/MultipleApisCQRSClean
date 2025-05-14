@@ -22,7 +22,11 @@ builder.Services.AddDbContext<EmployeeDbContext>(options =>
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+builder.Services.AddScoped<IRabbitMQProducer, RabbitMQProducer>();
+
 builder.Services.AddMediatR(a => a.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 var app = builder.Build();
 

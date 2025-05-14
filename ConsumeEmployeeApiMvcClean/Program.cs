@@ -2,6 +2,8 @@ using ConsumeEmployeeApiMvcClean.Domain.Interfaces;
 using ConsumeEmployeeApiMvcClean.Infrastructure.ApiClients;
 using Microsoft.Extensions.FileProviders;
 
+Consumer.Get();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
