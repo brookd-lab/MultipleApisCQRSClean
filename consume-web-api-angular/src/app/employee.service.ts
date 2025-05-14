@@ -34,7 +34,7 @@ export class EmployeeService {
   async createEmployee(employee: Employee) {
     try {
       const created = await firstValueFrom(this.http.post<Employee>(this.apiUrl, employee));
-      this.employees.update(employees => [...employees, created]);
+      await this.loadEmployees();
     } catch {
       this.error.set('Failed to create user');
     }
@@ -43,9 +43,10 @@ export class EmployeeService {
   async updateEmployee(employee: Employee) {
     try {
       const updated = await firstValueFrom(this.http.put<Employee>(`${this.apiUrl}`, employee));
-      this.employees.update(employees =>
-        employees.map(u => (u.id === updated.id ? updated : u))
-      );
+      // this.employees.update(employees =>
+      //   employees.map(u => (u.id === updated.id ? updated : u))
+      // );
+      await this.loadEmployees();
     } catch {
       this.error.set('Failed to update employee');
     }

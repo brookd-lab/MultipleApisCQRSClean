@@ -5,10 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-employee-list',
-  standalone: true,
-  imports: [NgIf, NgFor, FormsModule],
-  template: `
+    selector: 'app-employee-list',
+    imports: [NgIf, NgFor, FormsModule],
+    template: `
     <h2>Employee List</h2>
     <div *ngIf="employeeService.loading()">Loading...</div>
     <div *ngIf="employeeService.error()" style="color: red">{{ employeeService.error() }}</div>
