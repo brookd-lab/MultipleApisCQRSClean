@@ -3,46 +3,46 @@ import axios from "axios";
 
 const API_URL = "https://localhost:7083/employees"; // Change to your API endpoint
 
-function UserCRUD() {
-  const [users, setUsers] = useState([]);
+function EmployeeCRUD() {
+  const [Employees, setEmployees] = useState([]);
   const [form, setForm] = useState({ name: "", age: "" });
   const [editingId, setEditingId] = useState(null);
 
- // Fetch users (Read)
+ // Fetch Employees (Read)
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchEmployees = async () => {
       try {
         const res = await axios.get(API_URL);
-        setUsers(res.data);
+        setEmployees(res.data);
       } catch (err) {
         console.error(err);
       }
     };
-    fetchUsers();
-  }, [users]);
+    fetchEmployees();
+  }, [Employees]);
 
   // Handle input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Create or Update user
-  const handleSubmit = (e) => {
+  // Create or Update Employee
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (editingId) {
-      console.log(form)
+      // Update
       const updatedForm = { ...form, id: editingId };
-      axios.put(`${API_URL}`, updatedForm)
+      await axios.put(`${API_URL}`, updatedForm)
         .then(res => {
-          setUsers(users.map(u => u.id === editingId ? res.data : u));
           setEditingId(null);
           setForm({ name: "", age: "" });       
         })
         .catch(err => console.error(err));
     } else {
-      axios.post(API_URL, form)
+      // Create
+      await axios.post(API_URL, form)
         .then(res => {
-          setUsers([...users, res.data]);
+          setEmployees([...Employees, res.data]);
           setForm({ name: "", age: "" });         
         })
         .catch(err => console.error(err));
@@ -50,21 +50,21 @@ function UserCRUD() {
   };
 
   // Start editing
-  const startEdit = (user) => {
-    setEditingId(user.id);
-    setForm({ name: user.name, age: user.age });
+  const startEdit = (Employee) => {
+    setEditingId(Employee.id);
+    setForm({ name: Employee.name, age: Employee.age });
   };
 
-  // Delete user
-  const deleteUser = (id) => {
-    axios.delete(`${API_URL}/${id}`)
-      .then(() => setUsers(users.filter(u => u.id !== id)))
+  // Delete Employee
+  const deleteEmployee = async (id) => {
+    await axios.delete(`${API_URL}/${id}`)
+      .then(() => setEmployees(Employees.filter(u => u.id !== id)))
       .catch(err => console.error(err));
   };
 
   return (
     <div>
-      <h2>User Management</h2>
+      <h2>Employee Management</h2>
       <form onSubmit={handleSubmit}>
         <input
           name="name"
@@ -83,15 +83,16 @@ function UserCRUD() {
         />
         <button type="submit">{editingId ? "Update" : "Add"}</button>
       </form>
-        {users.map(u => (
+        <p></p>
+        {Employees.map(u => (
           <div key={u.id}>
             {u.name} ({u.age} years)
             <button onClick={() => startEdit(u)}>Edit</button>
-            <button onClick={() => deleteUser(u.id)}>Delete</button>
+            <button onClick={() => deleteEmployee(u.id)}>Delete</button>
           </div>
         ))}
     </div>
   );
 }
 
-export default UserCRUD;
+export default EmployeeCRUD;
