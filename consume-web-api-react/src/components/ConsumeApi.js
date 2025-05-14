@@ -8,12 +8,18 @@ function UserCRUD() {
   const [form, setForm] = useState({ name: "", age: "" });
   const [editingId, setEditingId] = useState(null);
 
-  // Fetch users (Read)
+ // Fetch users (Read)
   useEffect(() => {
-    axios.get(API_URL)
-      .then(res => setUsers(res.data))
-      .catch(err => console.error(err));
-  }, []);
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get(API_URL);
+        setUsers(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchUsers();
+  }, [users]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -25,18 +31,19 @@ function UserCRUD() {
     e.preventDefault();
     if (editingId) {
       console.log(form)
-      axios.put(`${API_URL}`, form)
+      const updatedForm = { ...form, id: editingId };
+      axios.put(`${API_URL}`, updatedForm)
         .then(res => {
           setUsers(users.map(u => u.id === editingId ? res.data : u));
           setEditingId(null);
-          setForm({ name: "", age: "" });
+          setForm({ name: "", age: "" });       
         })
         .catch(err => console.error(err));
     } else {
       axios.post(API_URL, form)
         .then(res => {
           setUsers([...users, res.data]);
-          setForm({ name: "", age: "" });
+          setForm({ name: "", age: "" });         
         })
         .catch(err => console.error(err));
     }
@@ -76,15 +83,13 @@ function UserCRUD() {
         />
         <button type="submit">{editingId ? "Update" : "Add"}</button>
       </form>
-      <ul>
         {users.map(u => (
-          <li key={u.id}>
+          <div key={u.id}>
             {u.name} ({u.age} years)
             <button onClick={() => startEdit(u)}>Edit</button>
             <button onClick={() => deleteUser(u.id)}>Delete</button>
-          </li>
+          </div>
         ))}
-      </ul>
     </div>
   );
 }
