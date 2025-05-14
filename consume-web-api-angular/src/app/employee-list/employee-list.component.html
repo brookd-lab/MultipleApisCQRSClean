@@ -1,1 +1,48 @@
-<p>employee-list works!</p>
+<div class="container mt-4">
+    <h3>Add Employee</h3>
+    <div class="input-group mb-5">
+        <input [(ngModel)]="newEmployee.name" class="form-control me-2" placeholder="Name">
+        <input [(ngModel)]="newEmployee.age" class="form-control me-2" placeholder="Email">
+        <button class="btn btn-success" (click)="addEmployee()">Add</button>
+    </div>
+    <h2 class="mb-2">Employee List</h2>
+    <div *ngIf="employeeService.loading()" class="alert alert-info">Loading...</div>
+    <div *ngIf="employeeService.error()" class="alert alert-danger">{{ employeeService.error() }}</div>
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employeeService.employees()">
+                <td *ngIf="!editingEmployee || editingEmployee.id !== employee.id">{{ employee.name }}</td>
+                <td *ngIf="!editingEmployee || editingEmployee.id !== employee.id">{{ employee.age }}</td>
+                <td *ngIf="!editingEmployee || editingEmployee.id !== employee.id" class="text-end">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-primary me-2" (click)="startEdit(employee)">Edit</button>
+                        <button type="button" class="btn btn-danger"
+                            (click)="deleteEmployee(employee.id!)">Delete</button>
+                    </div>
+                </td>
+                <!-- Edit Mode -->
+                <td *ngIf="editingEmployee && editingEmployee.id === employee.id" colspan="2">
+                    <div class="row gx-2">
+                        <div class="col">
+                            <input [(ngModel)]="editingEmployee.name" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="col">
+                            <input [(ngModel)]="editingEmployee.age" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="col text-end">
+                            <button class="btn btn-success btn-sm me-2" (click)="saveEdit()">Save</button>
+                            <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
