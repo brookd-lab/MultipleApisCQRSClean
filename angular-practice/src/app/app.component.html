@@ -1,0 +1,9 @@
+<app-count [amount]="50" />
+<app-display-list />
+
+  <tr *ngFor="let student of studentData">
+    <td>{{student.name}}</td>
+    <td>{{student.email}}</td>
+  </tr>
+
+<router-outlet />

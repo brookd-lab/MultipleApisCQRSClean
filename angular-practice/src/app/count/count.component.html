@@ -1,0 +1,10 @@
+<div class="container-fluid text-center">
+    <div class="">{{number}}</div>
+    <button class="btn btn-sm btn-primary me-2" (click)="inc()">inc</button>
+    <button class="btn btn-sm btn-success" (click)="dec(5)">dec</button>
+</div>
+
+<app-text [item]="'Burger'" myString="How are you?" (messageEvent)="receiveMessage($event)"></app-text>
+
+<p>Message from text component child: {{message}}</p>
+

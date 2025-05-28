@@ -1,0 +1,27 @@
+<div *ngFor="let name of names">
+    {{ name }}
+</div>
+
+<!-- <li *ngFor="let item of items">
+    {{ item.id}} / {{ item.name }} - {{ item.age }}
+</li> -->
+
+
+<div class="form-group">
+    <label>Name</label><input class='form-control' [(ngModel)]="name"/>
+    <label>Age</label><input class='form-control' input [(ngModel)]="age">
+    <button (click)="addItem()" style="margin: 1rem">
+        Add Item
+    </button>
+</div>
+
+<div *ngFor="let item of items">
+    <p>
+        {{item.id}}<br />
+        {{item.name}}<br />
+        {{item.age}}
+        <button (click)="deleteItem(item.id)" mat-icon-button>
+            Delete
+        </button>
+    </p>
+</div>
