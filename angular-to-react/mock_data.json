@@ -1,0 +1,41 @@
+{
+  "cards": [
+    {
+      "id": 6,
+      "title": "mock_data_card_6",
+      "author": "Meh"
+    },
+    {
+      "id": 7,
+      "title": "mock_data_card_7",
+      "author": "Meh"
+    },
+    {
+      "id": 8,
+      "title": "mock_data_card_8",
+      "author": "Meh"
+    },
+    {
+      "id": 9,
+      "title": "My Card",
+      "author": "DB"
+    },
+    {
+      "id": 10,
+      "title": "My New Card",
+      "author": "David"
+    },
+    {
+      "Toxic Adventure": "",
+      "id": 11
+    },
+    {
+      "Toxic Man": "",
+      "id": 12
+    },
+    {
+      "Jacko": "",
+      "id": 13
+    }
+  ]
+}
