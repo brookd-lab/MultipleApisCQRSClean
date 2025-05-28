@@ -61,6 +61,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "consume-web-api-react", "co
 		SlnRelativePath = "consume-web-api-react\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React-To-VS2022", "React-To-VS2022\React-To-VS2022.csproj", "{3CF53C72-5958-47D0-BB00-CE5E8F61914B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{7F1E693C-52DB-4BE1-91A5-358B1DD8C442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F1E693C-52DB-4BE1-91A5-358B1DD8C442}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F1E693C-52DB-4BE1-91A5-358B1DD8C442}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3CF53C72-5958-47D0-BB00-CE5E8F61914B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF53C72-5958-47D0-BB00-CE5E8F61914B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF53C72-5958-47D0-BB00-CE5E8F61914B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF53C72-5958-47D0-BB00-CE5E8F61914B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

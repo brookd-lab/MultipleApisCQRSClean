@@ -1,0 +1,25 @@
+@model React_To_VS2022.Models.Card
+
+@{
+    ViewBag.Title = "Card Details";
+}
+
+<div class="container py-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-primary mb-4">Card Details</h2>
+            <dl class="row">
+                <dt class="col-sm-3">Title</dt>
+                <dd class="col-sm-9">@Model.Title</dd>
+                <dt class="col-sm-3">Author</dt>
+                <dd class="col-sm-9">@Model.Author</dd>
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
+            <div class="mt-4">
+                <a class="btn btn-warning me-2" href="@Url.Action("Update", "Cards", new { id = Model.Id })">Update</a>
+                <a class="btn btn-secondary" href="@Url.Action("Index", "Cards")">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
